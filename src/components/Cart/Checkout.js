@@ -5,18 +5,18 @@ const isEmpty = (value) => value.trim() === "";
 const isValid = (value) => value.trim().length === 6;
 
 const Checkout = (props) => {
-  const [formInputValidity, setFormInputValidity] = useState({
-    name: true,
-    city: true,
-    street: true,
-    postal: true,
-  });
+    const [formInputValidity, setFormInputValidity] = useState({
+        name: true,
+        city: true,
+        street: true,
+        postal: true,
+    });
 
-  const nameInputRef = useRef();
-  const streetInputRef = useRef();
-  const postalInputRef = useRef();
-  const cityInputRef = useRef();
-  const confirmHandler = (event) => {
+    const nameInputRef = useRef();
+    const streetInputRef = useRef();
+    const postalInputRef = useRef();
+    const cityInputRef = useRef();
+    const confirmHandler = (event) => {
     event.preventDefault();
     const eneteredName = nameInputRef.current.value;
     const eneteredStreet = streetInputRef.current.value;
@@ -44,6 +44,12 @@ const Checkout = (props) => {
     if (!isFormValid) {
       return;
     }
+    props.onConfirm({
+        name: eneteredName,
+        street: eneteredStreet,
+        city: eneteredCity,
+        postalCode: eneteredPostal
+    });
   };
 
   return (
